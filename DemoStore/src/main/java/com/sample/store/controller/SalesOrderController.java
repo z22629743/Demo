@@ -131,7 +131,6 @@ public class SalesOrderController {
 		
 		return model;
 	}
-	
 
 	
 	@RequestMapping(value = "/availableProduct", method = RequestMethod.GET)
@@ -151,5 +150,5 @@ public class SalesOrderController {
 		
 		return model;
 	}
-
+	
 }

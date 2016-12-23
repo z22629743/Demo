@@ -1,5 +1,8 @@
 package com.sample.store.entity;
 
+import java.sql.Date;
+
+
 public class Product {
     private long id;
     private int category;
@@ -8,6 +11,7 @@ public class Product {
     private int reorderPoint;
     private int quantity;
     private long customerID;
+    private Date shippingtime;
     /* getters and setters */
     public long getId(){
             return id;
@@ -55,6 +59,13 @@ public class Product {
 	public void setCustomerID(long customerID) {
 		this.customerID = customerID;
 	}
+	public Date getShippingtime() {
+		return shippingtime;
+	}
+	public void setShippingtime(Date shippingtime) {
+		this.shippingtime = shippingtime;
+	}
+	
 
     /*
     public Object get(int attr){

@@ -8,6 +8,7 @@ public class PurchaseOrder {
     private int quantity;
     private Date orderTime;
     private Date stockArrivalTime;
+    private Date ShippingTime;
 
     /* getters and setters */
     public long getId(){
@@ -44,5 +45,12 @@ public class PurchaseOrder {
     public void setStockArrivalTime(Date stockArrivalTime){
     	this.stockArrivalTime = stockArrivalTime;
     }
+	public Date getShippingTime(){
+		return ShippingTime;
+	}
+    public void setShippingTime(Date ShippingTime){
+    	this.ShippingTime = ShippingTime;
+    }
+    
 
 }

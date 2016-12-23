@@ -16,14 +16,14 @@
     <div class="container theme-showcase" role="main">
     
       <div class="jumbotron" >    
-        <h1>產品管理系統</h1>
+        <h1>出貨單</h1>
         <p class="lead">本系統為輔仁大學資訊管理學系之範例程式</p>
       </div>
       
 
       
 	<div class="container">
-	 <form action="see">
+	 <form action="see2">
       <input type="text" name="customerID" placeholder="請輸入客戶編號">
       <button type="submit" class="glyphicon glyphicon-search">查詢</button>
       </form>
@@ -32,7 +32,7 @@
 			<div class="col-md-12">
 				<table class="table">
 				  	<tr>
-				  		<th>產品編號  </th><th>類別</th><th>描述</th><th>數量</th><th>動作</th><th><a class="btn btn-primary" href="shipOrder">建立出貨單</a></th>
+				  		<th>產品編號  </th><th>類別</th><th>描述</th><th>數量</th><th>動作</th><th>出貨時間</th>
 				  	</tr>
 				  	<c:forEach items="${shoppingCart}" var="po">
 					  	<tr>
@@ -40,7 +40,10 @@
 					  		<td>${po.category}</td>
 					  		<td>${po.desc}</td>
 					  		<td>${po.quantity }</td>
-					  		<td><a class="btn btn-default" href="deleteSC?id=${po.id}" Method="GET">刪除11</a></td>
+					  		<td><a class="btn btn-default" href="deleteSC?id=${po.id}" Method="GET">刪除</a>
+					  		<a class="btn btn-default" href="deleteSC?id=${po.id}" Method="GET">出貨</a>
+					  		</td>
+                   		    <td>${po.shippingtime}</td> 
 					  	</tr>
 				  	</c:forEach>
 				</table>
