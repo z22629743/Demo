@@ -10,16 +10,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href=".">產品管理系統</a>
+          <a class="navbar-brand" href=".">產品管理系統${newaccount.position}</a>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">           
+          <ul class="nav navbar-nav">         
+         
+            <c:if test="${newaccount.position == 'Purchasing staff' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/reorderProduct.jsp' ? ' active' : ''}"><a href="reorderProduct">應進貨產品</a></li>
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/po.jsp' ? ' active' : ''}"><a href="po">進貨單</a></li>
+            </c:if>
+             <c:if test="${newaccount.position == 'Salesperson' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/newSalesOrder.jsp' ? ' active' : ''}"><a href="newSalesOrder">建立訂單</a></li>
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/showCart.jsp' ? ' active' : ''}"><a href="showCart">銷貨單</a></li>
+            </c:if>
+            <c:if test="${newaccount.position == 'Warehouse staff' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/product.jsp' ? ' active' : ''}"><a href="product">產品管理</a></li>
+            </c:if>
+            <c:if test="${newaccount.position == 'Accounting staf' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/customer.jsp' ? ' active' : ''}"><a href="customer">客戶管理</a></li>
+            </c:if>
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/index.jsp' ? ' active' : ''}"><a href="login?name="> ${newaccount.name}
             <c:choose> 
   			<c:when test="${newaccount.name.equals('')}">登入 </c:when>

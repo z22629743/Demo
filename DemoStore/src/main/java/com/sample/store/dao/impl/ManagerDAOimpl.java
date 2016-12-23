@@ -43,6 +43,7 @@ public class ManagerDAOimpl implements ManagerDAO{
 				manager.setEmail(rs.getString("email"));
 				manager.setAccount(rs.getString("account"));
 				manager.setPassword(rs.getString("password"));
+				manager.setPosition(rs.getString("position"));
 				managerList.add(manager);
 			}
 			rs.close();
@@ -64,7 +65,7 @@ public class ManagerDAOimpl implements ManagerDAO{
 	public void insert(Manager manager) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO manager (Name, Phone, Address, Email, Account, Password) VALUES(?, ?, ?, ?, ?, ?)";	
+	    String sql = "INSERT INTO manager (Name, Phone, Address, Email, Account, Password, Position) VALUES(?, ?, ?, ?, ?, ?, ?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
@@ -74,6 +75,7 @@ public class ManagerDAOimpl implements ManagerDAO{
 			smt.setString(4, manager.getEmail());
 			smt.setString(5, manager.getAccount());
 			smt.setString(6, manager.getPassword());
+			smt.setString(7, manager.getPosition());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -106,6 +108,7 @@ public class ManagerDAOimpl implements ManagerDAO{
 				manager.setEmail(rs.getString("email"));
 				manager.setAccount(rs.getString("account"));
 				manager.setPassword(rs.getString("password"));
+				manager.setPosition(rs.getString("position"));
 			}
 			rs.close();
 			smt.close();
@@ -138,6 +141,7 @@ public class ManagerDAOimpl implements ManagerDAO{
 				manager.setEmail(rs.getString("email"));
 				manager.setAccount(rs.getString("account"));
 				manager.setPassword(rs.getString("password"));
+				manager.setPosition(rs.getString("position"));
 			}
 			rs.close();
 			smt.close();
@@ -157,7 +161,7 @@ public class ManagerDAOimpl implements ManagerDAO{
 	
 	public void update(Manager manager) {
 		
-		String sql = "UPDATE manager SET Name=?, Phone=?, Address=?, Email=?, Account=?, Password=? "
+		String sql = "UPDATE manager SET Name=?, Phone=?, Address=?, Email=?, Account=?, Password=?, Position=? "
 				+ "WHERE managerID = ?";
 		try {
 			conn = dataSource.getConnection();
@@ -168,7 +172,8 @@ public class ManagerDAOimpl implements ManagerDAO{
 			smt.setString(4, manager.getEmail());
 			smt.setString(5, manager.getAccount());
 			smt.setString(6, manager.getPassword());
-			smt.setLong(7, manager.getId());
+			smt.setString(7, manager.getPosition());
+			smt.setLong(8, manager.getId());
 			smt.executeUpdate();			
 			smt.close();
  

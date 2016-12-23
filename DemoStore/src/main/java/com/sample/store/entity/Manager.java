@@ -8,7 +8,7 @@ public class Manager {
     private String email;
     private String account;
     private String password;
-
+    private String position;
     /* getters and setters */
     public long getId(){
             return id;
@@ -56,6 +56,12 @@ public class Manager {
 	}
 	public void setAccount(String account) {
 		this.account = account;
+	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
 	}
     
 }

@@ -35,14 +35,13 @@ public class AccountController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView checkLogin(@ModelAttribute Account account, Manager man,String name) {
-		ModelAndView model = new ModelAndView("redirect:/product");	
+		ModelAndView model = new ModelAndView("redirect:/loginsuccess");	
 		Account account_session = (Account)context.getBean("account");
 		ManagerDAO dao = (ManagerDAO)context.getBean("managerDAO");
 		man = dao.get(account.getUsername());
 			if(account.getUsername().equals(dao.get(account.getUsername()).getAccount()) && account.getPassword().equals(dao.get(account.getUsername()).getPassword())){
 				account_session.setUsername(account.getUsername());
 				System.out.println("Success");
-				model = new ModelAndView("redirect:/product");
 				model.addObject("newaccount",man); 
 			}
 			else{
@@ -98,14 +97,19 @@ public class AccountController {
 	}
 	 @RequestMapping(value = "/newuser", method = RequestMethod.POST)
 		public ModelAndView newuser(@ModelAttribute Manager manager){
-			ModelAndView model = new ModelAndView("redirect:product");	
+			ModelAndView model = new ModelAndView("redirect:loginsuccess");	
 			ManagerDAO dao = (ManagerDAO) context.getBean("managerDAO");
 			manager.setId(dao.count());
 			dao.insert(manager);
 			return model;
 		}
 
-		
+	 @RequestMapping(value = "/loginsuccess", method = RequestMethod.GET)
+		public ModelAndView loginsuccess(@ModelAttribute Account account, Manager man,String name) {
+			ModelAndView model = new ModelAndView("loginsuccess");
+
+			return model;
+		}
 
 		
 }

@@ -18,7 +18,15 @@
 	電話:<input type="text" name ="phone"/></br>
 	地址:<input type="text" name ="address"/></br>
 	Email:<input type="text" name ="email"/></br>
-
+		<div class="form-group">
+						職位:<select class="form-control" name="position">
+  						<option value="Warehouse staff">Warehouse staff</option>
+  						<option value="Purchasing staff">Purchasing staff</option>
+  						<option value="Accounting staf">Accounting staff</option>
+  						<option value="Salesperson">Salesperson</option>
+  						<option></option>
+						</select>
+					</div>
 	<button type="submit" class="btn btn-danger">登入</button>
 
 </form>
