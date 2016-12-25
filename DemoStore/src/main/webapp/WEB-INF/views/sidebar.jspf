@@ -27,13 +27,14 @@
              <c:if test="${newaccount.position == 'Salesperson' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/newSalesOrder.jsp' ? ' active' : ''}"><a href="newSalesOrder">建立訂單</a></li>
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/showCart.jsp' ? ' active' : ''}"><a href="showCart">銷貨單</a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/shipOrder.jsp' ? ' active' : ''}"><a href="shipOrder">出貨單</a></li>
             </c:if>
             <c:if test="${newaccount.position == 'Warehouse staff' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/product.jsp' ? ' active' : ''}"><a href="product">產品管理</a></li>
             </c:if>
             <c:if test="${newaccount.position == 'Accounting staff' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/customer.jsp' ? ' active' : ''}"><a href="customer"><h3>客戶管理</h3></a></li>
-            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/accRecord.jsp' ? ' active' : ''}"><a href="accRecord"><h3>對帳</h3></a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/accRecord.jsp' ? ' active' : ''}"><a href="ar"><h3>對帳</h3></a></li>
             </c:if>
             </ul>
                 

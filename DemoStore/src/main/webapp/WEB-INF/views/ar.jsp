@@ -8,18 +8,19 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-    
+    <link href="<c:url value="/resources/css/simple-sidebar.css" />" rel="stylesheet">
     <title>產品管理</title>
 </head>
 <body>
+	<%@include file="sidebar.jspf" %>
 	<%@include file="navbar.jspf" %>
     <div class="container theme-showcase" role="main">
     
-      <div class="jumbotron" >    
+      <div class="jumbotron" style="margin-left: 8cm;">    
         <h1>產品管理系統</h1>
         <p class="lead">本系統為輔仁大學資訊管理學系之範例程式</p>
       </div>
-	<div class="container">
+	<div class="container"style="margin-left: 4cm;">
 		<div class="row">
 			<br>
 			<div class="col-md-12">
@@ -45,7 +46,7 @@
 					  		<td>
 					  			<c:choose>
 					  				<c:when test="${empty sa.ar_time}">
-										<a class="btn btn-default" href="arrive?id=${sa.soid}">到貨</a>
+										<a class="btn btn-default" href="arrive?id=${sa.soid}">到款</a>
     								</c:when>
     								<c:otherwise>
         								${sa.ar_time}
