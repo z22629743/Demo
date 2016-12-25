@@ -16,48 +16,43 @@
     <div class="container theme-showcase" role="main">
     
       <div class="jumbotron" >    
-        <h1>出貨單</h1>
+        <h1>產品管理系統</h1>
         <p class="lead">本系統為輔仁大學資訊管理學系之範例程式</p>
       </div>
-      
-
-      
 	<div class="container">
-	 <form action="search">
-      <input type="text" name="input" placeholder="請輸入...">
-      <div class="form-group">
-      搜尋方式:<select class="form-control" name="searchmethod">
-      			<option value="soid">訂單編號</option>
-      			<option value="customername">客戶姓名</option>     
-      
-      </select>
-      </div>
-      <button type="submit" class="glyphicon glyphicon-search">查詢</button>
-      </form>
 		<div class="row">
 			<br>
 			<div class="col-md-12">
 				<table class="table">
 				  	<tr>
-				  		<th>出貨單編號  </th><th>客戶姓名</th><th>客戶地址</th><th>客戶電話</th><th>出貨單成立時間</th><th>出貨時間</th>
+				  		<th>編號</th>
+				  		<th>客戶名稱</th>
+				  		<th>客戶地址</th>
+				  		<th>客戶電話</th>
+				  		<th>銷貨單成立時間</th>
+				  		<th>出貨單成立時間</th>
+				  		<th>到款時間</th>
+				  		<th>管理</th>
 				  	</tr>
-				  	<c:forEach items="${List}" var="po">
+				  	<c:forEach items="${saList}" var="sa">
 					  	<tr>
-					  		<td>${po.soid}</td>
-					  		<td>${po.customername}</td>
-					  		<td>${po.customeraddress}</td>
-					  		<td>${po.customerphone }</td>
-					  		<td>${po.ordertime }</td>
+					  		<td>${sa.soid}</td>
+					  		<td>${sa.customername}</td>
+					  		<td>${sa.customeraddress}</td>
+					  		<td>${sa.customerphone}</td>
+					  		<td>${sa.ordertime}</td>
+					  		<td>${sa.shippingtime}</td>
 					  		<td>
-					  		<c:choose>
-					  				<c:when test="${empty po.shippingtime}">
-										<a class="btn btn-default" href="saleout?id=${po.soid}">出貨</a>
+					  			<c:choose>
+					  				<c:when test="${empty sa.ar_time}">
+										<a class="btn btn-default" href="arrive?id=${sa.soid}">到貨</a>
     								</c:when>
     								<c:otherwise>
-        								${po.shippingtime}
+        								${sa.ar_time}
     								</c:otherwise>
-								</c:choose>	
-								</td>
+								</c:choose>				  							  			
+					  		</td>
+					  		<td><a class="btn btn-default" href="deleteList?id=${sa.soid}" Method="GET">刪除</a></td>
 					  	</tr>
 				  	</c:forEach>
 				</table>
@@ -68,7 +63,7 @@
 
     </div><!-- /.container -->
 
-	<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

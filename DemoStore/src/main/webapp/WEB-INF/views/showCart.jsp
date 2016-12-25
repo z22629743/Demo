@@ -32,7 +32,7 @@
 			<div class="col-md-12">
 				<table class="table">
 				  	<tr>
-				  		<th>產品編號  </th><th>類別</th><th>描述</th><th>數量</th><th>動作</th><th><a class="btn btn-primary" href="shipOrder">建立出貨單</a></th>
+				  		<th>產品編號  </th><th>類別</th><th>描述</th><th>數量</th><th>動作</th><th><a class="btn btn-primary" href="checkout?id=${customerID }">建立出貨單</a></th>
 				  	</tr>
 				  	<c:forEach items="${shoppingCart}" var="po">
 					  	<tr>
@@ -40,7 +40,7 @@
 					  		<td>${po.category}</td>
 					  		<td>${po.desc}</td>
 					  		<td>${po.quantity }</td>
-					  		<td><a class="btn btn-default" href="deleteSC?id=${po.id}" Method="GET">刪除11</a></td>
+					  		<td><a class="btn btn-default" href="deleteSC?id=${po.id}" Method="GET">刪除</a></td>
 					  	</tr>
 				  	</c:forEach>
 				</table>

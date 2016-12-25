@@ -38,6 +38,15 @@ public class ShoppingCart implements java.io.Serializable {
 		}
 		return cartList;
 	}
+	public List<Product> remove(long id){
+		for(Iterator<Product> ir =productList.iterator() ; ir.hasNext();  ){
+			Product bProduct = ir.next();
+			if(String.valueOf(id).equals(String.valueOf(bProduct.getCustomerID()))){
+				ir.remove();
+			}
+		}
+		return cartList;
+	}
 	public void delete(Product aProduct){
 		for(Iterator<Product> ir =productList.iterator() ; ir.hasNext();  ){
 			Product bProduct = ir.next();
