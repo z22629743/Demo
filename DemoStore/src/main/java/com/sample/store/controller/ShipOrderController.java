@@ -38,32 +38,7 @@ public class ShipOrderController {
 	//configuration for session, please refer to: http://tuhrig.de/making-a-spring-bean-session-scoped/
 	@Autowired
 	private ShoppingCart shoppingCart;
-	
-//	@RequestMapping(value = "/addShoppingCart", method = RequestMethod.GET)
-//	public ModelAndView addShoppingCart(@ModelAttribute Product product,long customerid){
-//		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
-//		ModelAndView model = new ModelAndView("redirect:/availableProduct?id="+customerid+"&customer="+ customerDAO.get(customerid));
-//		//only id is passed
-//		long pid = product.getId();
-//		System.out.println("pid="+pid +"pid2="+customerid + " "+product.getQuantity());
-//		ProductDAO productDAO = (ProductDAO)context.getBean("productDAO");
-//		SalesOrderDAO salesOrderDAO = (SalesOrderDAO)context.getBean("salesOrderDAO");
-//		product = productDAO.get(product);//retrieve all information with id
-//		product.setCustomerID(customerid);
-//		//ShoppingCart shoppingCart = (ShoppingCart)context.getBean("shoppingCart"); 
-//		shoppingCart.add(product);
-//		//System.out.println(shoppingCart.count());
-//		return model;
-//	}
-//	
-//	@RequestMapping(value = "/showCart", method = RequestMethod.GET)
-//	public ModelAndView showShoppingCart(){
-//		ModelAndView model = new ModelAndView("showCart");
-//		//ShoppingCart shoppingCart = (ShoppingCart)context.getBean("shoppingCart");
-//		//List<Product> content =  shoppingCart.getCart();
-//		//model.addObject("shoppingCart",content);
-//		return model;
-//	}
+
 	@RequestMapping(value = "/see2", method = RequestMethod.GET)
 	public ModelAndView see(@ModelAttribute("customerID")long id){
 		ModelAndView model = new ModelAndView("shipOrder");
@@ -80,20 +55,7 @@ public class ShipOrderController {
 		}
 		return model;
 	}
-//
-//	@RequestMapping(value = "/deleteSC", method = RequestMethod.GET)
-//	public ModelAndView deleteShoppingCart(@ModelAttribute Product product,int id){
-//		ModelAndView model = new ModelAndView("redirect:/showCart");
-//		//only id is passed
-//		ProductDAO productDAO = (ProductDAO)context.getBean("productDAO");
-//		product.setId(id);
-//		product = productDAO.get(product);
-//		List<Product> content =  shoppingCart.getCart();
-//		shoppingCart.delete(product);
-//		System.out.println(shoppingCart.count());
-//		model.addObject("shoppingCart",content);
-//		return model;
-//	}
+
 	@RequestMapping(value = "/shipOrder", method = RequestMethod.GET)
 	public ModelAndView getcustomerList(){
 	
@@ -108,23 +70,5 @@ public class ShipOrderController {
 		return model;
 	}
 
-	
-//	@RequestMapping(value = "/availableProduct", method = RequestMethod.GET)
-//	public ModelAndView listAvailableProduct(@ModelAttribute("id")long id,Customer customer){
-//	
-//		ModelAndView model = new ModelAndView("availableProduct");
-//		//logger.info("controller");
-//		System.out.println(id);
-//		ProductDAO productDAO = (ProductDAO)context.getBean("productDAO");
-//		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
-//		customer = customerDAO.get(id);
-//		List<Product> productList = new ArrayList<Product>();
-//		productList = productDAO.getAvailableList();
-//		//logger.info(""+productList.size());
-//		model.addObject("customer",customer);
-//		model.addObject("productList", productList);
-//		
-//		return model;
-//	}
-	
+
 }

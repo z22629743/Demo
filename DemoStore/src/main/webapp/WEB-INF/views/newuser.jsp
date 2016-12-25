@@ -22,7 +22,7 @@
 						Â¾¦ì:<select class="form-control" name="position">
   						<option value="Warehouse staff">Warehouse staff</option>
   						<option value="Purchasing staff">Purchasing staff</option>
-  						<option value="Accounting staf">Accounting staff</option>
+  						<option value="Accounting staff">Accounting staff</option>
   						<option value="Salesperson">Salesperson</option>
   						<option></option>
 						</select>
