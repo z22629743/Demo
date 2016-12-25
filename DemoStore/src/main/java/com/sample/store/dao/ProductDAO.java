@@ -14,6 +14,6 @@ public interface ProductDAO {
 	public List<Product> getReorderList();
 	public List<Product> getAvailableList();
 	public Product get(Product aProduct);
-	
+	public Product get(long id);
 
 }

@@ -2,6 +2,7 @@ package com.sample.store.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 //import java.util.Map;
 
@@ -23,11 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sample.store.dao.SalesOrderDAO;
+import com.sample.store.dao.ShipOrderDAO;
 import com.sample.store.dao.CustomerDAO;
 import com.sample.store.dao.ProductDAO;
 import com.sample.store.entity.Customer;
 import com.sample.store.entity.Product;
 import com.sample.store.entity.SalesOrder;
+import com.sample.store.entity.ShippingList;
 import com.sample.store.entity.ShoppingCart;
 
 
@@ -39,20 +42,14 @@ public class ShipOrderController {
 	@Autowired
 	private ShoppingCart shoppingCart;
 
-	@RequestMapping(value = "/see2", method = RequestMethod.GET)
-	public ModelAndView see(@ModelAttribute("customerID")long id){
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView see(@ModelAttribute("input")String input,@ModelAttribute("searchmethod")String searchmethod){
 		ModelAndView model = new ModelAndView("shipOrder");
-		//SalesOrderDAO salesOrderDAO = (SalesOrderDAO)context.getBean("salesOrderDAO");
-		//String sql = "SELECT * FROM salesorderitem WHERE customerID LIKE '%"+id+"%'";
-		//List<SalesOrder> sqllist = salesOrderDAO.getList(sql);
-		if(String.valueOf(id) == null){
-			List<Product> pList = shoppingCart.show(0);
-			model.addObject(("shoppingCart"),pList);
-		}else{
-		List<Product> pList = shoppingCart.show(id);
-		model.addObject(("shoppingCart"),pList);
-	
-		}
+		ShipOrderDAO shipOrderDAO = (ShipOrderDAO)context.getBean("shipOrderDAO");
+		String sql = "SELECT * FROM salesorder WHERE "+searchmethod+" LIKE '%"+input+"%'";
+		List<ShippingList> sqllist = shipOrderDAO.getList(sql);
+
+		model.addObject("List",sqllist);
 		return model;
 	}
 
@@ -61,14 +58,35 @@ public class ShipOrderController {
 	
 		ModelAndView model = new ModelAndView("shipOrder");
 		//logger.info("controller");
-		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
-		List<Customer> customerList = new ArrayList<Customer>();
-		customerList = customerDAO.getList();
-		//logger.info(""+customerList.size());
-		model.addObject("customerList", customerList);
+		ShipOrderDAO shipOrderDAO = (ShipOrderDAO)context.getBean("shipOrderDAO");
+		
+//		List<Customer> customerList = new ArrayList<Customer>();
+//		customerList = customerDAO.getList();
+//		//logger.info(""+customerList.size());
+		model.addObject("List", shipOrderDAO.getList());
 		
 		return model;
 	}
 
-
+	@RequestMapping(value = "/saleout", method = RequestMethod.GET)
+	public ModelAndView saleout(@ModelAttribute("id")long id){
+		ModelAndView model = new ModelAndView("redirect:/shipOrder");
+		ShipOrderDAO shipOrderDAO = (ShipOrderDAO)context.getBean("shipOrderDAO");
+		List<SalesOrder> list = shipOrderDAO.getProductid(id);
+		for(Iterator<SalesOrder> ir =list.iterator() ; ir.hasNext();  ){
+			SalesOrder aSalesOrder = ir.next();
+			System.out.println("id="+aSalesOrder.getId()+"qty="+aSalesOrder.getQuantity());
+			
+		}
+//		System.out.println("name="+shipOrderDAO.get(id).getCustomername());
+		
+		try {
+			shipOrderDAO.sell(list);
+			shipOrderDAO.saleout(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return model;
+	}
 }

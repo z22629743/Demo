@@ -38,7 +38,6 @@ public class SalesOrderController {
 	//configuration for session, please refer to: http://tuhrig.de/making-a-spring-bean-session-scoped/
 	@Autowired
 	private ShoppingCart shoppingCart;
-	
 	@RequestMapping(value = "/addShoppingCart", method = RequestMethod.GET)
 	public ModelAndView addShoppingCart(@ModelAttribute Product product,long customerid){
 		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
@@ -81,11 +80,13 @@ public class SalesOrderController {
 		return model;
 	}
 	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
-	public ModelAndView checkout(){
+	public ModelAndView checkout(@ModelAttribute("id")long id){
 		ModelAndView model = new ModelAndView("showCart");
 		//ShoppingCart shoppingCart = (ShoppingCart)context.getBean("shoppingCart");
 		SalesOrderDAO salesOrderDAO = (SalesOrderDAO)context.getBean("salesOrderDAO");
-		List<Product> pList =  shoppingCart.getCart();
+		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
+		System.out.println("id="+id+"Name="+customerDAO.get(id).getName());
+		List<Product> pList =  shoppingCart.show(id);
 		/*List<Long> pList2 = new ArrayList<Long>();
 		List<Integer> pList3 = new ArrayList<Integer>();
 		for (int i=0; i<pList.size();i++){
@@ -94,14 +95,15 @@ public class SalesOrderController {
 		}*/
 		int result = 0;
 		try {
-			result = salesOrderDAO.sellProduct(pList);
+			result = salesOrderDAO.sellProduct(pList,customerDAO.get(id));
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
 		System.out.println("result="+result);
 		if (result != 0){ //successfully updated, clean up shopping cart
-			shoppingCart.cleanup();
+			shoppingCart.remove(id);
 		}
 		return model;
 	}

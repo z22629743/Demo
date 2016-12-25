@@ -23,8 +23,15 @@
 
       
 	<div class="container">
-	 <form action="see2">
-      <input type="text" name="customerID" placeholder="請輸入客戶編號">
+	 <form action="search">
+      <input type="text" name="input" placeholder="請輸入...">
+      <div class="form-group">
+      搜尋方式:<select class="form-control" name="searchmethod">
+      			<option value="soid">訂單編號</option>
+      			<option value="customername">客戶姓名</option>     
+      
+      </select>
+      </div>
       <button type="submit" class="glyphicon glyphicon-search">查詢</button>
       </form>
 		<div class="row">
@@ -32,18 +39,25 @@
 			<div class="col-md-12">
 				<table class="table">
 				  	<tr>
-				  		<th>產品編號  </th><th>類別</th><th>描述</th><th>數量</th><th>動作</th><th>出貨時間</th>
+				  		<th>出貨單編號  </th><th>客戶姓名</th><th>客戶地址</th><th>客戶電話</th><th>出貨單成立時間</th><th>出貨時間</th>
 				  	</tr>
-				  	<c:forEach items="${shoppingCart}" var="po">
+				  	<c:forEach items="${List}" var="po">
 					  	<tr>
-					  		<td>${po.id}</td>
-					  		<td>${po.category}</td>
-					  		<td>${po.desc}</td>
-					  		<td>${po.quantity }</td>
-					  		<td><a class="btn btn-default" href="deleteSC?id=${po.id}" Method="GET">刪除</a>
-					  		<a class="btn btn-default" href="deleteSC?id=${po.id}" Method="GET">出貨</a>
-					  		</td>
-                   		    <td>${po.shippingtime}</td> 
+					  		<td>${po.soid}</td>
+					  		<td>${po.customername}</td>
+					  		<td>${po.customeraddress}</td>
+					  		<td>${po.customerphone }</td>
+					  		<td>${po.ordertime }</td>
+					  		<td>
+					  		<c:choose>
+					  				<c:when test="${empty po.shippingtime}">
+										<a class="btn btn-default" href="saleout?id=${po.soid}">出貨</a>
+    								</c:when>
+    								<c:otherwise>
+        								${po.shippingtime}
+    								</c:otherwise>
+								</c:choose>	
+								</td>
 					  	</tr>
 				  	</c:forEach>
 				</table>

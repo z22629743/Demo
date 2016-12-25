@@ -164,7 +164,7 @@ public class ProductDAOImpl implements ProductDAO{
 			smt = conn.prepareStatement(sql);
 			smt.setLong(1, aProduct.getId());
 			rs = smt.executeQuery();
-			if(rs.next()){
+			while(rs.next()){
 				aProduct.setId(rs.getInt("productID"));
 				aProduct.setCategory(rs.getInt("category"));
 				aProduct.setDesc(rs.getString("description"));
@@ -186,6 +186,36 @@ public class ProductDAOImpl implements ProductDAO{
 		}
 		return aProduct;
 	}
-
+	
+public Product get(long id) {
+		Product aProduct = new Product();
+		String sql = "SELECT * FROM product WHERE productID = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setLong(1, id);
+			rs = smt.executeQuery();
+			while(rs.next()){
+				aProduct.setId(rs.getInt("productID"));
+				aProduct.setCategory(rs.getInt("category"));
+				aProduct.setDesc(rs.getString("description"));
+				aProduct.setInventory(rs.getInt("inventory"));
+				aProduct.setReorderPoint(rs.getInt("reorderPoint"));
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return aProduct;
+	}
 
 }

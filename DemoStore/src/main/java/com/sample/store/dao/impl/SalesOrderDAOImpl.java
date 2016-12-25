@@ -21,6 +21,7 @@ import javax.sql.DataSource;
 //import com.sample.store.entity.Product;
 //import com.sample.store.entity.ShoppingCart;
 import com.sample.store.dao.SalesOrderDAO;
+import com.sample.store.entity.Customer;
 import com.sample.store.entity.Product;
 import com.sample.store.entity.SalesOrder;
 
@@ -33,8 +34,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO{
 		this.dataSource = dataSource;
 	}
 
-	public int sellProduct(List<Product> pList) throws SQLException {
-		    
+	public int sellProduct(List<Product> pList,Customer customer) throws SQLException {
 		if (pList.size() == 0){
 			return 0; // if nothing in the shopping cart
 		}
@@ -45,7 +45,7 @@ public class SalesOrderDAOImpl implements SalesOrderDAO{
 		PreparedStatement stUpdateProduct = null;
 		PreparedStatement stInsertOrderItem = null;
 
-
+		
 		try {
 		      
 			//Connect to a database
@@ -71,8 +71,11 @@ public class SalesOrderDAOImpl implements SalesOrderDAO{
 		      
 			// get order id for MySQL
 			
-			String sqlCreateOrder = "INSERT INTO salesOrder (OrderTime) VALUES(Now())";
+			String sqlCreateOrder = "INSERT INTO salesOrder (CustomerName, CustomerAddress, CustomerPhone, OrderTime) VALUES(?, ?, ?, Now())";
 		    stCreateOrder  = conn.prepareStatement(sqlCreateOrder, PreparedStatement.RETURN_GENERATED_KEYS);
+		    stCreateOrder.setString(1, customer.getName());
+		    stCreateOrder.setString(2, customer.getAddress());
+		    stCreateOrder.setString(3, customer.getPhone());
 		    stCreateOrder.executeUpdate();
 		    ResultSet rs = stCreateOrder.getGeneratedKeys();
 		    if (rs != null && rs.next()) {
@@ -84,11 +87,11 @@ public class SalesOrderDAOImpl implements SalesOrderDAO{
 		    for (Product aProduct:pList){
 		    	//the following two SQL have to be done in the same transaction
 		    	//Issue a query and get a result
-		    	stUpdateProduct = conn.prepareStatement("UPDATE product SET Inventory = Inventory - ? WHERE ProductId = ?");
-		    	stUpdateProduct.setLong(1,aProduct.getQuantity());
-		    	stUpdateProduct.setLong(2,aProduct.getId());
-		    	stUpdateProduct.executeUpdate();
-		    	stUpdateProduct.close();
+//		    	stUpdateProduct = conn.prepareStatement("UPDATE product SET Inventory = Inventory - ? WHERE ProductId = ?");
+//		    	stUpdateProduct.setLong(1,aProduct.getQuantity());
+//		    	stUpdateProduct.setLong(2,aProduct.getId());
+//		    	stUpdateProduct.executeUpdate();
+//		    	stUpdateProduct.close();
 		    	//System.out.println(productID+"is updated");
 		    	String sqlInsertOrderItem = "INSERT INTO salesOrderItem (SOID, ProductID, Quantity, customerID) VALUES(?, ?, ?, ?)";
 		    	stInsertOrderItem = conn.prepareStatement(sqlInsertOrderItem);
