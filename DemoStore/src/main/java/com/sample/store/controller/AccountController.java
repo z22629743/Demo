@@ -92,7 +92,7 @@ public class AccountController {
 	}
 	@RequestMapping(value = "/newuser", method = RequestMethod.GET)
 	public ModelAndView newuser(){
-		ModelAndView model = new ModelAndView("newuser");
+		ModelAndView model = new ModelAndView("index");
 		return model;
 	}
 	 @RequestMapping(value = "/newuser", method = RequestMethod.POST)

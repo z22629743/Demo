@@ -125,6 +125,50 @@ public class ManagerDAOimpl implements ManagerDAO{
 		}
 		return manager;
 	}
+	//登入判斷
+//	public boolean checkLoginAdministrator(Manager manager){
+//		boolean flag=false;
+//		String sql="SELECT * FROM Administrator where binary A_idName=?";
+//		
+//		try {
+//			conn = dataSource.getConnection();
+//			smt = conn.prepareStatement(sql);
+//			String name;
+//			smt.setString(1, name);
+//			rs = smt.executeQuery();
+//				if(rs.next()){
+//					String manager_id=rs.getlong("manager_id");
+//					String A_pwd=rs.getString("A_password");
+//					System.out.println("id2:"+A_idName);
+//					System.out.println("password:"+A_pwd);
+//				
+//				if(manager.getPassword().equals(manager.getPassword())){
+//					flag=true;//登入成功
+//				}
+//				else{
+//					flag=false;//密碼錯誤，到signup首頁
+//					
+//				}
+//			}
+//			
+//			rs.close();
+//			smt.close();
+// 
+//		} catch (SQLException e) {
+//			throw new RuntimeException(e);
+// 
+//		} finally {
+//			if (conn != null) {
+//				try {
+//					conn.close();
+//				} catch (SQLException e) {}
+//			}
+//		}
+//		return manager;
+//	}
+		
+		
+		
 	public Manager get(String name) {
 		Manager manager = new Manager();
 		String sql = "SELECT * FROM manager WHERE account = ?";
@@ -214,6 +258,12 @@ public class ManagerDAOimpl implements ManagerDAO{
 
 	public int count(){
 		return 0; //no longer needed
+	}
+
+	@Override
+	public boolean checkLoginAdministrator(Manager member) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.sample.store.dao;
 
 import java.util.List;
 
+
 import com.sample.store.entity.Manager;
 
 public interface ManagerDAO {
@@ -11,6 +12,8 @@ public interface ManagerDAO {
 	public Manager get(long id);
 	
 	public Manager get(String name);
+	
+	public boolean checkLoginAdministrator(Manager member);
 	
 	public void update(Manager manager);
 	

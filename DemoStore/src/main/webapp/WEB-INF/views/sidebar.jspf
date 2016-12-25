@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <!-- 最新編譯和最佳化的 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- 選擇性佈景主題 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+<!-- 最新編譯和最佳化的 JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+       <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                    </li>
+                     <c:if test="${newaccount.position == 'Purchasing staff' }">
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/reorderProduct.jsp' ? ' active' : ''}"><a href="reorderProduct">應進貨產品</a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/po.jsp' ? ' active' : ''}"><a href="po">進貨單</a></li>
+            </c:if>
+             <c:if test="${newaccount.position == 'Salesperson' }">
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/newSalesOrder.jsp' ? ' active' : ''}"><a href="newSalesOrder">建立訂單</a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/showCart.jsp' ? ' active' : ''}"><a href="showCart">銷貨單</a></li>
+            </c:if>
+            <c:if test="${newaccount.position == 'Warehouse staff' }">
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/product.jsp' ? ' active' : ''}"><a href="product">產品管理</a></li>
+            </c:if>
+            <c:if test="${newaccount.position == 'Accounting staff' }">
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/customer.jsp' ? ' active' : ''}"><a href="customer"><h3>客戶管理</h3></a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/accRecord.jsp' ? ' active' : ''}"><a href="accRecord"><h3>對帳</h3></a></li>
+            </c:if>
+            </ul>
+                
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+  </div><!-- /.container-fluid -->
+</nav>

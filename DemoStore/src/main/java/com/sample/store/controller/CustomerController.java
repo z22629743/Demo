@@ -96,5 +96,12 @@ public class CustomerController {
 			customerDAO.delete(customer.getId());
 			return model;
 		}
+		@RequestMapping(value = "/accRecord", method = RequestMethod.GET)
+		public ModelAndView accRecord(@ModelAttribute Customer customer){
+			ModelAndView model = new ModelAndView("redirect:/accRecord");
+			CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
+			customerDAO.delete(customer.getId());
+			return model;
+		}
 
 }
