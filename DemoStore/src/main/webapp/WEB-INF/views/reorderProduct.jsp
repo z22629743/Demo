@@ -27,16 +27,18 @@
 <body>
 	 <%@include file="sidebar.jspf" %>
  <%@include file="navbar.jspf" %>
-    <div class="container theme-showcase" role="main" style="margin-left: 235px">
+    <div class="container theme-showcase" role="main">
     
-      <div class="jumbotron" >    
+     <div class="jumbotron" style="margin-left: 8cm;">  
         <h1>產品進貨系統</h1>
         <p class="lead"></p>
       </div>
 	<div class="container">
+	
 		<div class="row">
+		<div class="col-md-9 col-md-offset-3">
 			<br>
-			<div class="col-md-12">
+			
 				<table class="table">
 				  	<tr>
 				  		<th>編號</th>
@@ -64,6 +66,7 @@
 					  		  	</form>
 				  	</c:forEach>
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>

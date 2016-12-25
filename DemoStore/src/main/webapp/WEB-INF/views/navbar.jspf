@@ -47,7 +47,7 @@
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/index.jsp' ? ' active' : ''}"><a href="login?name="><span class="glyphicon glyphicon-user"></span>管理者 ${newaccount.name}
             <c:choose> 
             
-     <c:when test="${newaccount.name.equals('')}">登出 </c:when>
+     <c:when test="${newaccount.name.equals('')}">登出</c:when>
      <c:when test="${newaccount.name}==null">登出 </c:when>
      <c:otherwise>登出  <span class="glyphicon glyphicon-log-out"></span></c:otherwise>
    </c:choose>

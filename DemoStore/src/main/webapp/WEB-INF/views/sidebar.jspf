@@ -21,16 +21,16 @@
                     </a>
                     </li>
                      <c:if test="${newaccount.position == 'Purchasing staff' }">
-            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/reorderProduct.jsp' ? ' active' : ''}"><a href="reorderProduct">應進貨產品</a></li>
-            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/po.jsp' ? ' active' : ''}"><a href="po">進貨單</a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/reorderProduct.jsp' ? ' active' : ''}"><a href="reorderProduct"><h3>應進貨產品</h3></a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/po.jsp' ? ' active' : ''}"><a href="po"><h3>進貨單</h3></a></li>
             </c:if>
              <c:if test="${newaccount.position == 'Salesperson' }">
-            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/newSalesOrder.jsp' ? ' active' : ''}"><a href="newSalesOrder">建立訂單</a></li>
-            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/showCart.jsp' ? ' active' : ''}"><a href="showCart">銷貨單</a></li>
-            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/shipOrder.jsp' ? ' active' : ''}"><a href="shipOrder">出貨單</a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/newSalesOrder.jsp' ? ' active' : ''}"><a href="newSalesOrder"><h3>建立訂單</h3></a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/showCart.jsp' ? ' active' : ''}"><a href="showCart"><h3>銷貨單</h3></a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/shipOrder.jsp' ? ' active' : ''}"><a href="shipOrder"><h3>出貨單</h3></a></li>
             </c:if>
             <c:if test="${newaccount.position == 'Warehouse staff' }">
-            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/product.jsp' ? ' active' : ''}"><a href="product">產品管理</a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/product.jsp' ? ' active' : ''}"><a href="product"><h3>產品管理</h3></a></li>
             </c:if>
             <c:if test="${newaccount.position == 'Accounting staff' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/customer.jsp' ? ' active' : ''}"><a href="customer"><h3>客戶管理</h3></a></li>

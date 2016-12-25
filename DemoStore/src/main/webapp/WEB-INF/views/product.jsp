@@ -25,17 +25,16 @@
 	<%@include file="sidebar.jspf"%>
 	<%@include file="navbar.jspf"%>
 
-	<div class="container theme-showcase" role="main"
-		style="margin-left: 235px">
-
-		<div class="jumbotron">
+    <div class="container theme-showcase" role="main">
+    
+     <div class="jumbotron" style="margin-left: 8cm;"> 
 			<h1>產品管理系統</h1>
 			<p class="lead"></p>
 		</div>
 		<div class="container">
 			<div class="row">
 				<br>
-				<div class="col-md-12">
+					<div class="col-md-9 col-md-offset-3">
 					<a class="btn btn-primary" href="insertProduct">新增</a>
 					<table class="table">
 						<tr>

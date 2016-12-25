@@ -29,8 +29,9 @@
 	<%@include file="sidebar.jspf" %>
 	<%@include file="navbar.jspf" %>
     
-    <div class="container theme-showcase" role="main" style="margin-left: 235px">
-      <div class="jumbotron" >    
+    <div class="container theme-showcase" role="main">
+    
+     <div class="jumbotron" style="margin-left: 8cm;">   
         <h1>登入成功!</h1>
         <p class="lead">請選擇管理功能</p>
       </div>
