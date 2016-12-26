@@ -116,18 +116,13 @@
 												<option></option>
 											</select>
 										</div>
-										<button type="submit" class="btn btn-danger">登入</button>
+										<button type="submit" class="btn btn-danger">註冊</button>
 
 									</form>
 
 
 								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save
-										changes</button>
-								</div>
+		
 							</div>
 						</div>
 

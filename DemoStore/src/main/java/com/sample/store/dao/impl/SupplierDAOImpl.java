@@ -169,5 +169,35 @@ public class SupplierDAOImpl implements SupplierDAO{
 		}
 		return aSupplier;
 	}
+	public Supplier get(long id){
+		String sql = "SELECT * FROM supplier WHERE supplierID = ?";
+		Supplier aSupplier = new Supplier();
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setLong(1, id);
+			rs = smt.executeQuery();
+			while(rs.next()){	
+				aSupplier.setSupplierid(rs.getLong("supplierid"));
+				aSupplier.setName(rs.getString("name"));
+				aSupplier.setPhone(rs.getString("phone"));
+				aSupplier.setAddress(rs.getString("address"));
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return aSupplier;
+	}
+	
 	
 }

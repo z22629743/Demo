@@ -2,6 +2,13 @@ package com.sample.store.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.DataSource;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -11,7 +18,14 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class ShoppingCart implements java.io.Serializable {
-
+	private DataSource dataSource;
+	private Connection conn = null ;
+	private ResultSet rs = null ;
+	private PreparedStatement smt = null ;
+	
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 	/**
 	 * serialVersionUID is generated automatically
 	 */
@@ -51,7 +65,9 @@ public class ShoppingCart implements java.io.Serializable {
 		for(Iterator<Product> ir =productList.iterator() ; ir.hasNext();  ){
 			Product bProduct = ir.next();
 			if(aProduct.getDesc().equals(bProduct.getDesc())){
-				ir.remove();
+				if(String.valueOf(aProduct.getCustomerID()).equals(String.valueOf(bProduct.getCustomerID()))){
+					ir.remove();
+				}
 			}
 		}
 	}
@@ -59,4 +75,6 @@ public class ShoppingCart implements java.io.Serializable {
 		productList = new ArrayList<Product>();
 	}
 
+	
+	
 }

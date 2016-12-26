@@ -93,12 +93,13 @@ public class SalesOrderDAOImpl implements SalesOrderDAO{
 //		    	stUpdateProduct.executeUpdate();
 //		    	stUpdateProduct.close();
 		    	//System.out.println(productID+"is updated");
-		    	String sqlInsertOrderItem = "INSERT INTO salesOrderItem (SOID, ProductID, Quantity, customerID) VALUES(?, ?, ?, ?)";
+		    	String sqlInsertOrderItem = "INSERT INTO salesOrderItem (SOID, ProductID, Quantity, customerID, totalprice) VALUES(?, ?, ?, ?, ?)";
 		    	stInsertOrderItem = conn.prepareStatement(sqlInsertOrderItem);
 		    	stInsertOrderItem.setLong(1,orderID);
 		    	stInsertOrderItem.setLong(2,aProduct.getId());
 		    	stInsertOrderItem.setLong(3,aProduct.getQuantity());
 		    	stInsertOrderItem.setLong(4, aProduct.getCustomerID());
+		    	stInsertOrderItem.setLong(5, aProduct.getPrice()*aProduct.getQuantity());
 		    	stInsertOrderItem.executeUpdate();
 		    	stInsertOrderItem.close();
 		    	//System.out.println(productID+"is processed");
@@ -108,7 +109,29 @@ public class SalesOrderDAOImpl implements SalesOrderDAO{
 		      conn.commit();
 		      conn.close();
 		      
+		      String str = "SELECT SUM(totalprice)as orderprice FROM salesorderitem WHERE SOID=?";
+		      conn = dataSource.getConnection();
+				smt = conn.prepareStatement(str);
+				smt.setLong(1, orderID);
+				rs=smt.executeQuery();
+				int ordertotal = 0;
+				if(rs.next()){
+					ordertotal = rs.getInt("orderprice");
+				}
+				System.out.println("orderprice="+ordertotal);
+				smt.close();
+				conn.close();
+				String str2 = "UPDATE salesorder SET totalprice=? WHERE SOID=?";
+			      conn = dataSource.getConnection();
+					smt = conn.prepareStatement(str2);
+					smt.setInt(1, ordertotal);
+					smt.setLong(2, orderID);
+					smt.executeUpdate();
+					conn.close();
+					smt.close();
+				
 		} // try
+		
     	catch (Exception e) {
     		count = 0;
     		e.printStackTrace();
@@ -129,6 +152,8 @@ public class SalesOrderDAOImpl implements SalesOrderDAO{
 			  	   stInsertOrderItem.close(); }
 		  	  conn.close();
 		} 
+		
+		
 	    return count;
 	} //sellProduct
 

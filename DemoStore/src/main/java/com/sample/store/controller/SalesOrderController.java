@@ -108,12 +108,13 @@ public class SalesOrderController {
 		return model;
 	}
 	@RequestMapping(value = "/deleteSC", method = RequestMethod.GET)
-	public ModelAndView deleteShoppingCart(@ModelAttribute Product product,int id){
-		ModelAndView model = new ModelAndView("redirect:/showCart");
+	public ModelAndView deleteShoppingCart(@ModelAttribute("id")long id,Product product,@ModelAttribute("customerID")long customerid){
+		ModelAndView model = new ModelAndView("redirect:/see?customerID="+customerid);
 		//only id is passed
 		ProductDAO productDAO = (ProductDAO)context.getBean("productDAO");
 		product.setId(id);
 		product = productDAO.get(product);
+		System.out.println("supid="+product.getCustomerID());
 		List<Product> content =  shoppingCart.getCart();
 		shoppingCart.delete(product);
 		System.out.println(shoppingCart.count());
@@ -143,11 +144,10 @@ public class SalesOrderController {
 		System.out.println(id);
 		ProductDAO productDAO = (ProductDAO)context.getBean("productDAO");
 		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
-		customer = customerDAO.get(id);
 		List<Product> productList = new ArrayList<Product>();
 		productList = productDAO.getAvailableList();
 		//logger.info(""+productList.size());
-		model.addObject("customer",customer);
+		model.addObject("customer",customerDAO.get(id));
 		model.addObject("productList", productList);
 		
 		return model;

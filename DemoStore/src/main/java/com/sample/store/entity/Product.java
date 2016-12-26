@@ -15,7 +15,7 @@ public class Product {
     private int inventory;
     private int reorderPoint;
     
-    
+    private int totalprice;
     private int quantity;
     private long customerID;
     private Date shippingtime;
@@ -102,6 +102,12 @@ public class Product {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public int getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
 	}
 	
 

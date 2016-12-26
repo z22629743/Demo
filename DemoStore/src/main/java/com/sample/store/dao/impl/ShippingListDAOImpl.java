@@ -41,6 +41,7 @@ public class ShippingListDAOImpl implements ShippingListDAO{
 				aShippingList.setCustomername(rs.getString("customername"));
 				aShippingList.setCustomeraddress(rs.getString("customeraddress"));
 				aShippingList.setCustomerphone(rs.getString("customerphone"));
+				aShippingList.setOrderprice(rs.getInt("totalprice"));
 				aShippingList.setOrdertime(rs.getDate("ordertime"));
 				aShippingList.setShippingtime(rs.getDate("shippingtime"));
 				aShippingList.setAr_time(rs.getDate("ar_time"));

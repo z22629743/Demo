@@ -46,7 +46,7 @@
 					  		<td>
 					  			<c:choose>
 					  				<c:when test="${empty sa.ar_time}">
-										<a class="btn btn-default" href="arrive?id=${sa.soid}">到款</a>
+										<a class="btn btn-default" href="arrive?id=${sa.soid}">總額${sa.orderprice }到款</a>
     								</c:when>
     								<c:otherwise>
         								${sa.ar_time}

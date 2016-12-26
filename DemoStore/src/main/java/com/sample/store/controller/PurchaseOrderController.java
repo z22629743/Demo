@@ -185,10 +185,12 @@ public class PurchaseOrderController {
 	}
 
 	@RequestMapping(value = "/deleteSupplier", method = RequestMethod.POST)
-	public ModelAndView deleteSupplier(@ModelAttribute Supplier supplier){
+	public ModelAndView deleteSupplier(@ModelAttribute("id")long id, Supplier supplier){
 		ModelAndView model = new ModelAndView("redirect:/supplier");
 		SupplierDAO supplierDAO = (SupplierDAO)context.getBean("supplierDAO");
-		supplierDAO.delete(supplier);
+		
+	
+		supplierDAO.delete(supplierDAO.get(id));
 		return model;
 	}
 }

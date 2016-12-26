@@ -56,7 +56,7 @@
 									<td>${po.color }</td>
 									<td>${po.price}</td>
 									<td>${po.quantity }</td>
-									<td><a class="btn btn-default" href="deleteSC?id=${po.id}"
+									<td><a class="btn btn-default" href="deleteSC?id=${po.id}&&customerID=${customerID}"
 										Method="GET">刪除</a></td>
 								</tr>
 							</c:forEach>

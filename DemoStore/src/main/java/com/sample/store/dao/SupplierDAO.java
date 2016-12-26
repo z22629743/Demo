@@ -10,4 +10,5 @@ public interface SupplierDAO {
 	public void update(Supplier aSupplier);
 	public List<Supplier> getList();
 	public Supplier get(Supplier aSupplier);
+	public Supplier get(long id);
 }

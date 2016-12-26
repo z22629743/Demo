@@ -7,6 +7,7 @@ private long soid;
 private String customername;
 private String customeraddress;
 private String customerphone;
+private int orderprice;
 private Date ordertime;
 private Date shippingtime;
 private Date ar_time;
@@ -51,5 +52,11 @@ public Date getAr_time() {
 }
 public void setAr_time(Date ar_time) {
 	this.ar_time = ar_time;
+}
+public int getOrderprice() {
+	return orderprice;
+}
+public void setOrderprice(int orderprice) {
+	this.orderprice = orderprice;
 }
 }
