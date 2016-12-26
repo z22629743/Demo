@@ -37,13 +37,20 @@
 	
 		<div class="row">
 		<div class="col-md-9 col-md-offset-3">
+		<form action="seereorderProduct">
+					<input type="text" name="supplierid" placeholder="請輸入供應商編號">
+					<button type="submit" class="glyphicon glyphicon-search">查詢</button>
+				</form>
 			<br>
 			
 				<table class="table">
 				  	<tr>
 				  		<th>編號</th>
+				  		<th>供應商編號</th>
+				  		<th>商品名稱</th>
 				  		<th>類別</th>
-				  		<th>描述</th>
+				  		<th>尺寸</th>
+				  		<th>顏色</th>
 				  		<th>庫存量</th>
 				  		<th>安全存量</th>
 				  		<th>進貨數量</th>
@@ -54,8 +61,11 @@
   <input type="hidden" name="id" value="${product.id }">
 					  	<tr>
 					  		<td>${product.id}</td>
+					  		<td>${product.supplierid }</td>
+					  		<td>${product.name }</td>
 					  		<td>${product.category}</td>
-					  		<td>${product.desc}</td>
+					  		<td>${product.size}</td>
+					  		<td>${product.color }</td>
 					  		<td>${product.inventory}</td>
 					  		<td>${product.reorderPoint}</td>
 					  		<td><input type="text" placeholder="輸入數量" name ="quantity"  required></td>

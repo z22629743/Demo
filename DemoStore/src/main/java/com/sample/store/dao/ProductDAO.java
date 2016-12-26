@@ -16,4 +16,5 @@ public interface ProductDAO {
 	public Product get(Product aProduct);
 	public Product get(long id);
 	public List<Product> get(String name);
+	
 }

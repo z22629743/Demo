@@ -23,6 +23,7 @@
                      <c:if test="${newaccount.position == 'Purchasing staff' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/reorderProduct.jsp' ? ' active' : ''}"><a href="reorderProduct"><h3>應進貨產品</h3></a></li>
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/po.jsp' ? ' active' : ''}"><a href="po"><h3>進貨單</h3></a></li>
+            <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/supplier.jsp' ? ' active' : ''}"><a href="supplier"><h3>供應商管理</h3></a></li>
             </c:if>
              <c:if test="${newaccount.position == 'Salesperson' }">
             <li class="${pageContext.request.requestURI eq '/practice/WEB-INF/views/newSalesOrder.jsp' ? ' active' : ''}"><a href="newSalesOrder"><h3>建立訂單</h3></a></li>
