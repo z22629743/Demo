@@ -5,10 +5,17 @@ import java.sql.Date;
 
 public class Product {
     private long id;
-    private int category;
+    private long supplierid;
+    private String name;
+    private String category;
+    private String size;
+    private String color;
     private String desc;
+    private int price;
     private int inventory;
     private int reorderPoint;
+    
+    
     private int quantity;
     private long customerID;
     private Date shippingtime;
@@ -20,12 +27,7 @@ public class Product {
     	this.id = id;
     }
 
-    public int getCategory(){
-            return category;
-    }
-    public void setCategory(int category){
-        this.category = category;
-    }
+ 
     
     public String getDesc(){
         return desc;
@@ -64,6 +66,42 @@ public class Product {
 	}
 	public void setShippingtime(Date shippingtime) {
 		this.shippingtime = shippingtime;
+	}
+	public long getSupplierid() {
+		return supplierid;
+	}
+	public void setSupplierid(long supplierid) {
+		this.supplierid = supplierid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 

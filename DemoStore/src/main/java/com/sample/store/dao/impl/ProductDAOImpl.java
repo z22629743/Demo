@@ -26,14 +26,19 @@ public class ProductDAOImpl implements ProductDAO{
 	public void insert(Product aProduct) {
 
 		// remove first parameter when Id is auto-increment
-	    String sql = "INSERT INTO product (Category, Description, Inventory, ReorderPoint) VALUES(?, ?, ?, ?)";	
+	    String sql = "INSERT INTO product (SupplierID, Name, Category, Size, Color, Description, Price, Inventory, ReorderPoint) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";	
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, aProduct.getCategory());
-			smt.setString(2, aProduct.getDesc());
-			smt.setInt(3, aProduct.getInventory());
-			smt.setInt(4, aProduct.getReorderPoint());
+			smt.setLong(1, aProduct.getSupplierid());
+			smt.setString(2, aProduct.getName());
+			smt.setString(3, aProduct.getCategory());
+			smt.setString(4, aProduct.getSize());
+			smt.setString(5, aProduct.getColor());
+			smt.setString(6, aProduct.getDesc());
+			smt.setInt(7, aProduct.getPrice());
+			smt.setInt(8, aProduct.getInventory());
+			smt.setInt(9, aProduct.getReorderPoint());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -74,16 +79,21 @@ public class ProductDAOImpl implements ProductDAO{
 
 	public void update(Product aProduct) {
 		
-		String sql = "UPDATE product SET Category=?, Description=?, Inventory=?, ReorderPoint=? "
+		String sql = "UPDATE product SET SupplierID=?, Name=?, Category=?, Size=?, Color=?, Description=?, Price=?, Inventory=?, ReorderPoint=? "
 				+ "WHERE productID = ?";
 		try {
 			conn = dataSource.getConnection();
 			smt = conn.prepareStatement(sql);
-			smt.setInt(1, aProduct.getCategory());
-			smt.setString(2, aProduct.getDesc());
-			smt.setInt(3, aProduct.getInventory());
-			smt.setInt(4, aProduct.getReorderPoint());
-			smt.setLong(5, aProduct.getId());
+			smt.setLong(1, aProduct.getSupplierid());
+			smt.setString(2, aProduct.getName());
+			smt.setString(3, aProduct.getCategory());
+			smt.setString(4, aProduct.getSize());
+			smt.setString(5, aProduct.getColor());
+			smt.setString(6, aProduct.getDesc());
+			smt.setInt(7, aProduct.getPrice());
+			smt.setInt(8, aProduct.getInventory());
+			smt.setInt(9, aProduct.getReorderPoint());
+			smt.setLong(10, aProduct.getId());
 			smt.executeUpdate();			
 			smt.close();
  
@@ -132,9 +142,14 @@ public class ProductDAOImpl implements ProductDAO{
 			rs = smt.executeQuery();
 			while(rs.next()){
 				Product aProduct = new Product();
-				aProduct.setId(rs.getInt("productID"));			
-				aProduct.setCategory(rs.getInt("category"));
+				aProduct.setId(rs.getInt("productID"));	
+				aProduct.setSupplierid(rs.getLong("supplierid"));
+				aProduct.setName(rs.getString("name"));
+				aProduct.setCategory(rs.getString("category"));
+				aProduct.setSize(rs.getString("size"));
+				aProduct.setColor(rs.getString("color"));
 				aProduct.setDesc(rs.getString("description"));
+				aProduct.setPrice(rs.getInt("price"));
 				//System.out.println(rs.getString("description"));
 				aProduct.setInventory(rs.getInt("inventory"));
 				aProduct.setReorderPoint(rs.getInt("reorderPoint"));
@@ -165,9 +180,15 @@ public class ProductDAOImpl implements ProductDAO{
 			smt.setLong(1, aProduct.getId());
 			rs = smt.executeQuery();
 			while(rs.next()){
-				aProduct.setId(rs.getInt("productID"));
-				aProduct.setCategory(rs.getInt("category"));
+				aProduct.setId(rs.getInt("productID"));	
+				aProduct.setSupplierid(rs.getLong("supplierid"));
+				aProduct.setName(rs.getString("name"));
+				aProduct.setCategory(rs.getString("category"));
+				aProduct.setSize(rs.getString("size"));
+				aProduct.setColor(rs.getString("color"));
 				aProduct.setDesc(rs.getString("description"));
+				aProduct.setPrice(rs.getInt("price"));
+				//System.out.println(rs.getString("description"));
 				aProduct.setInventory(rs.getInt("inventory"));
 				aProduct.setReorderPoint(rs.getInt("reorderPoint"));
 			}
@@ -196,9 +217,15 @@ public Product get(long id) {
 			smt.setLong(1, id);
 			rs = smt.executeQuery();
 			while(rs.next()){
-				aProduct.setId(rs.getInt("productID"));
-				aProduct.setCategory(rs.getInt("category"));
+				aProduct.setId(rs.getInt("productID"));	
+				aProduct.setSupplierid(rs.getLong("supplierid"));
+				aProduct.setName(rs.getString("name"));
+				aProduct.setCategory(rs.getString("category"));
+				aProduct.setSize(rs.getString("size"));
+				aProduct.setColor(rs.getString("color"));
 				aProduct.setDesc(rs.getString("description"));
+				aProduct.setPrice(rs.getInt("price"));
+				//System.out.println(rs.getString("description"));
 				aProduct.setInventory(rs.getInt("inventory"));
 				aProduct.setReorderPoint(rs.getInt("reorderPoint"));
 			}
@@ -217,5 +244,47 @@ public Product get(long id) {
 		}
 		return aProduct;
 	}
+
+
+	public List<Product> get(String name){
+		List<Product> productList = new ArrayList<Product>();
+		
+		String sql = "SELECT * FROM product WHERE Name = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, name);
+			rs = smt.executeQuery();
+			while(rs.next()){
+				Product aProduct = new Product();
+				aProduct.setId(rs.getInt("productID"));	
+				aProduct.setSupplierid(rs.getLong("supplierid"));
+				aProduct.setName(rs.getString("name"));
+				aProduct.setCategory(rs.getString("category"));
+				aProduct.setSize(rs.getString("size"));
+				aProduct.setColor(rs.getString("color"));
+				aProduct.setDesc(rs.getString("description"));
+				aProduct.setPrice(rs.getInt("price"));
+				//System.out.println(rs.getString("description"));
+				aProduct.setInventory(rs.getInt("inventory"));
+				aProduct.setReorderPoint(rs.getInt("reorderPoint"));
+				productList.add(aProduct);
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return productList;
+	}
+	
 
 }

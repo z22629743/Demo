@@ -21,14 +21,22 @@
         <p class="lead">本系統為輔仁大學資訊管理學系之範例程式</p>
       </div>
 	<div class="container" style="margin-left: 4cm;">
+		<form action="see2" style="margin-left: 1cm;">
+					<input type="text" name="name" placeholder="請輸入產品名稱">
+					<input type="hidden" name="id" value="${customer.id }">
+					<button type="submit" class="glyphicon glyphicon-search">查詢</button>
+				</form>
 		<div class="row">
 			<br>
 			<div class="col-md-12">
 				<table class="table">
 				  	<tr>
 				  		<th>編號</th>
-				  		<th>類別</th>
-				  		<th>描述</th>
+						<th>商品名稱</th>
+						<th>類別</th>
+						<th>尺寸</th>
+						<th>顏色</th>
+						<th>價格</th>
 				  		<th>庫存量</th>
 				  		<th>數量</th>
 				  		<th>動作</th>
@@ -39,8 +47,11 @@
   <input type="hidden" name="customerid" value="${customer.id }">
 					  	<tr>
 					  		<td>${product.id}</td>
+					  		<td>${product.name }</td>
 					  		<td>${product.category}</td>
-					  		<td>${product.desc}</td>
+					  		<td>${product.size }</td>
+					  		<td>${product.color }</td>
+					  		<td>${product.price}</td>
 					  		<td>${product.inventory}</td>
 					  		<td><input type="text" placeholder="輸入數量" name ="quantity"  required></td>
 					  		<td>

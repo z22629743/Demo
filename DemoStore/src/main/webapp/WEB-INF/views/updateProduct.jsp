@@ -29,21 +29,48 @@
 						<form method="post" action="updateProduct" id="updateForm">
 							<input type="hidden" name="id" value="${product.id}">
 							<div class="form-group">
+								<label>供應商編號:</label>
+								<input type="text" name="supplierid" placeholder="輸入供應商編號" value="${product.supplierid }" required>
+							</div>
+							<div class="form-group">
+								<label>產品名稱:</label>
+								<input type="text" name="name" placeholder="輸入產品名稱" value="${product.name }" required>
+							</div>
+							<div class="form-group">
 								<label for="category">類別:</label> <select class="form-control"
 									name="category">
-									<option value="1" ${product.category==1?'selected':''}>1</option>
-									<option value="2" ${product.category==2?'selected':''}>2</option>
-									<option value="3" ${product.category==3?'selected':''}>3</option>
-									<option value="4" ${product.category==4?'selected':''}>4</option>
-									<option value="5" ${product.category==5?'selected':''}>5</option>
+									<option value="man" ${product.category==man?'selected':''}>男裝</option>
+									<option value="woman" ${product.category==woman?'selected':''}>女裝</option>
 								</select>
-
 							</div>
-
+							<div class="form-group">
+								<label for="size">尺寸:</label> <select class="form-control"
+									name="size">
+									<option value="XS" ${product.size==XS?'selected':''}>XS</option>
+									<option value="S" ${product.size==S?'selected':''}>S</option>
+									<option value="M" ${product.size==M?'selected':''}>M</option>
+									<option value="L" ${product.size==L?'selected':''}>L</option>
+									<option value="XL" ${product.size==XL?'selected':''}>XL</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="color">顏色:</label> <select class="form-control"
+									name="color">
+									<option value="Red" ${product.color==Red?'selected':''}>紅</option>
+									<option value="Black" ${product.color==Black?'selected':''}>黑</option>
+									<option value="Blue" ${product.color==Blue?'selected':''}>藍</option>
+									<option value="Green" ${product.color==Green?'selected':''}>綠</option>
+									<option value="Yellow" ${product.color==Yellow?'selected':''}>黃</option>
+								</select>
+							</div>
 							<div class="form-group">
 								<label>描述:</label> <input  type="text" name="desc"
 									placeholder="輸入產品敘述" value="${product.desc}" required>
 								<p class="help-block">產品敘述</p>
+							</div>
+							<div class="form-group">
+								<label>產品定價:</label>
+								<input type="text" name="price" placeholder="輸入產品定價" value="${product.price }" required>
 							</div>
 							<div class="form-group">
 								<label>庫存量:</label> <input type="number" name="inventory"

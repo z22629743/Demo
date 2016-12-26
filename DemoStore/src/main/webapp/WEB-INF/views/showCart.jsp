@@ -36,10 +36,13 @@
 					<div class="col-md-12">
 						<table class="table">
 							<tr>
-								<th>產品編號</th>
+								<th>編號</th>
+								<th>商品名稱</th>
 								<th>類別</th>
-								<th>描述</th>
-								<th>數量</th>
+								<th>尺寸</th>
+								<th>顏色</th>
+								<th>價格</th>
+				  				<th>數量</th>
 								<th>動作</th>
 								<th><a class="btn btn-primary"
 									href="checkout?id=${customerID }">建立出貨單</a></th>
@@ -47,8 +50,11 @@
 							<c:forEach items="${shoppingCart}" var="po">
 								<tr>
 									<td>${po.id}</td>
+									<td>${po.name }</td>
 									<td>${po.category}</td>
-									<td>${po.desc}</td>
+									<td>${po.size }</td>
+									<td>${po.color }</td>
+									<td>${po.price}</td>
 									<td>${po.quantity }</td>
 									<td><a class="btn btn-default" href="deleteSC?id=${po.id}"
 										Method="GET">刪除</a></td>

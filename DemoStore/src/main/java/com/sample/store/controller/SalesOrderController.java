@@ -152,5 +152,16 @@ public class SalesOrderController {
 		
 		return model;
 	}
+	@RequestMapping(value = "/see2", method = RequestMethod.GET)
+	public ModelAndView see2(@ModelAttribute("name")String name,@ModelAttribute("id")long id,Customer customer){
+		ModelAndView model = new ModelAndView("availableProduct");
+		System.out.println("name="+name);
+		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
+		customer = customerDAO.get(id);
+		ProductDAO productDAO = (ProductDAO)context.getBean("productDAO");
+		model.addObject("customer",customer);
+		model.addObject("productList", productDAO.get(name));
+		return model;
+	}
 	
 }

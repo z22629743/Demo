@@ -26,19 +26,46 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<form method="post" action="insertProduct" id="insertForm">
+				<div class="form-group">
+						<label>供應商編號:</label>
+						<input type="text" name="supplierid" placeholder="輸入供應商編號" required>
+					</div>
+					<div class="form-group">
+						<label>產品名稱:</label>
+						<input type="text" name="name" placeholder="輸入產品名稱" required>
+					</div>
 					<div class="form-group">
 						類別:<select class="form-control" name="category">
-  						<option>1</option>
-  						<option>2</option>
-  						<option>3</option>
-  						<option>4</option>
-  						<option>5</option>
+  						<option value="man">男裝</option>
+  						<option value="woman">女裝</option>
+						</select>
+					</div>
+					<div class="form-group">
+						尺寸:<select class="form-control" name="size">
+  						<option value="XS">XS</option>
+  						<option value="S">S</option>
+  						<option value="M">M</option>
+  						<option value="L">L</option>
+  						<option value="XL">XL</option>
+						</select>
+					</div>
+					<div class="form-group">
+						顏色:<select class="form-control" name="color">
+  						<option value="Red">紅</option>
+  						<option value="Black">黑</option>
+  						<option value="Blue">藍</option>
+  						<option value="Green">綠</option>
+  						<option value="Yellow">黃</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label>描述:</label>
 						<input type="text" name="desc" placeholder="輸入產品敘述" required>
 						<p class="help-block">產品敘述</p>
+					</div>
+					<div class="form-group">
+						<label>定價:</label>
+						<input type="text" name="price" placeholder="輸入產品金額" required>
 					</div>
 					<div class="form-group">
 						<label>庫存量:</label>

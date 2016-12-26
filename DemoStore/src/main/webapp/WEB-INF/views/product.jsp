@@ -39,8 +39,13 @@
 					<table class="table">
 						<tr>
 							<th>編號</th>
+							<th>供應商編號</th>
+							<th>商品名稱</th>
 							<th>類別</th>
+							<th>尺寸</th>
+							<th>顏色</th>
 							<th>描述</th>
+							<th>價格</th>
 							<th>庫存量</th>
 							<th>安全存量</th>
 							<th>編輯</th>
@@ -48,8 +53,13 @@
 						<c:forEach items="${productList}" var="product">
 							<tr>
 								<td>${product.id}</td>
+								<td>${product.supplierid }</td>
+								<td>${product.name }</td>
 								<td>${product.category}</td>
+								<td>${product.size }</td>
+								<td>${product.color }</td>
 								<td>${product.desc}</td>
+								<td>${product.price }</td>
 								<td>${product.inventory}</td>
 								<td>${product.reorderPoint}</td>
 								<td><a class="btn btn-default"
