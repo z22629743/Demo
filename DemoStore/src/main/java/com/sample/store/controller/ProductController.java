@@ -1,14 +1,12 @@
 package com.sample.store.controller;
 
+import java.io.File;
+import java.io.IOException;
 //import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
+import javax.servlet.http.HttpServletRequest;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -19,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sample.store.dao.CustomerDAO;
@@ -107,7 +106,34 @@ public class ProductController {
 		productDAO.delete(product);
 		return model;
 	}
+	
+	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	 public ModelAndView uploadFileHandler(@ModelAttribute Product product, @ModelAttribute("file") MultipartFile file,
+	   HttpServletRequest request) {
+	//  MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+//	     MultipartFile multipartFile = multipartRequest.getFile("file");
 
+
+	  ModelAndView model = new ModelAndView("redirect:/product");
+	  ProductDAO dao = (ProductDAO) context.getBean("productDAO");
+
+	  System.out.println("id:" + product.getId());
+
+	  String name = product.getId() + ".jpg";
+	  String filePath = request.getSession().getServletContext().getRealPath("/") + "resources/fileUpload/";
+
+	  File dir = new File(filePath);
+	  if (!dir.exists())
+	   dir.mkdirs();
+	  try {file.transferTo(new File(filePath + name));
+	   System.out.println("Server File Location=" + filePath + name);
+	  } catch (IOException e) {
+	   e.printStackTrace();
+	  }
+	  
+	  
+	  return model;
+	 }
 
 
 }

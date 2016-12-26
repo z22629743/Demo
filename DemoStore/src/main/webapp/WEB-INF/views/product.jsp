@@ -42,6 +42,7 @@
 							<th>供應商編號</th>
 							<th>商品名稱</th>
 							<th>類別</th>
+							<th>圖片</th>
 							<th>尺寸</th>
 							<th>顏色</th>
 							<th>描述</th>
@@ -56,6 +57,7 @@
 								<td>${product.supplierid }</td>
 								<td>${product.name }</td>
 								<td>${product.category}</td>
+								 <td><img src="<%=request.getContextPath()%>/resources/fileUpload/${product.id}.jpg" width="240 px" height="240 px "/></td>
 								<td>${product.size }</td>
 								<td>${product.color }</td>
 								<td>${product.desc}</td>
@@ -67,6 +69,11 @@
 									class="btn btn-sm btn-danger deleteBtn" href="#"
 									data-toggle="modal" data-target="#deleteModal"
 									data-id="${product.id}">刪除</a></td>
+									<td><form method="POST" action="uploadFile" enctype="multipart/form-data">
+         	 					<input type="hidden" name="id" value="${product.id}">
+         					 	<input type="file" name="file"><br />
+         						 <input type="submit" value="Upload">
+         						</form></td>
 							</tr>
 						</c:forEach>
 					</table>
