@@ -17,8 +17,9 @@
     <div class="container theme-showcase" role="main" >
     
       <div class="jumbotron" style="margin-left: 8cm;">    
-        <h1>${customer.name }的訂單${customer.id }</h1>
+        <h1>${customer.name }的訂單</h1>
         <p class="lead">本系統為輔仁大學資訊管理學系之範例程式</p>
+        <label class="label label-warning">${message}</label>
       </div>
 	<div class="container" style="margin-left: 4cm;">
 		<form action="see2" style="margin-left: 1cm;">
@@ -26,7 +27,7 @@
 					<input type="hidden" name="id" value="${customer.id }">
 					<button type="submit" class="glyphicon glyphicon-search">查詢</button>
 				</form>
-		<div class="row">
+		<div class="row" style="margin-left: 0.5cm;">
 			<br>
 			<div class="col-md-12">
 				<table class="table">

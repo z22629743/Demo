@@ -147,7 +147,36 @@ public class CustomerDAOImpl implements CustomerDAO{
 		}
 		return customer;
 	}
-	
+	public Customer get(String name) {
+		Customer customer = new Customer();
+		String sql = "SELECT * FROM customer WHERE Name = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, name);
+			rs = smt.executeQuery();
+			if(rs.next()){
+				customer.setId(rs.getInt("customerID"));
+				customer.setName(rs.getString("name"));
+				customer.setPhone(rs.getString("phone"));
+				customer.setAddress(rs.getString("address"));
+				customer.setLevel(rs.getString("level"));
+			}
+			rs.close();
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		return customer;
+	}
 	public void update(Customer customer) {
 		
 		String sql = "UPDATE customer SET Name=?, Phone=?, Address=?, Level=? "
@@ -201,5 +230,28 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public int count(){
 		return 0; //no longer needed
 	}
-
+	
+public void updateLevel(Customer customer) {
+		
+		String sql = "UPDATE customer SET Level=? WHERE customerID = ?";
+		try {
+			conn = dataSource.getConnection();
+			smt = conn.prepareStatement(sql);
+			smt.setString(1, customer.getLevel());
+			smt.setLong(2, customer.getId());
+			smt.executeUpdate();			
+			smt.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		
+	}
 }

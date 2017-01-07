@@ -116,7 +116,7 @@ import com.sample.store.entity.ShippingList;
 				aShippingList.setCustomeraddress(rs.getString("customeraddress"));
 				aShippingList.setCustomerphone(rs.getString("customerphone"));
 				aShippingList.setOrdertime(rs.getDate("ordertime"));
-				aShippingList.setShippingtime(rs.getDate("shippingtime"));
+				aShippingList.setShippingtime(rs.getTimestamp("shippingtime"));
 				List.add(aShippingList);
 			}
 			rs.close();
@@ -150,7 +150,7 @@ import com.sample.store.entity.ShippingList;
 				aShippingList.setCustomeraddress(rs.getString("customeraddress"));
 				aShippingList.setCustomerphone(rs.getString("customerphone"));
 				aShippingList.setOrdertime(rs.getDate("ordertime"));
-				aShippingList.setShippingtime(rs.getDate("shippingtime"));
+				aShippingList.setShippingtime(rs.getTimestamp("shippingtime"));
 				List.add(aShippingList);
 			}
 			rs.close();
@@ -226,7 +226,7 @@ public ShippingList get(long soid) {
 				sh.setCustomeraddress(rs.getString("customeraddress"));
 				sh.setCustomerphone(rs.getString("customerphone"));
 				sh.setOrdertime(rs.getDate("ordertime"));
-				sh.setShippingtime(rs.getDate("shippingtime"));
+				sh.setShippingtime(rs.getTimestamp("shippingtime"));
 			}
 			rs.close();
 			smt.close();

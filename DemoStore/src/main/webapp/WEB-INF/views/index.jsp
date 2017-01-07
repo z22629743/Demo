@@ -77,58 +77,12 @@
 
 						<!-- <a href="newuser">註冊</a> -->
 
-						<button type="button" class="btn btn-info btn-md"
-							data-toggle="modal" data-target="#myModal">註冊新會員</button>
-
 						<label class="label label-warning">${message}${newaccount.name}</label>
 						
 				</div>
 					
 
-					<!-- ============================================================================================================ -->
-					<!-- Modal -->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-						aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-								</div>
-								<div class="modal-body">
-									<h1></h1>
-									<P>註冊</P>
-									<form action="newuser" method="post">
-										帳號:<input type="text" name="account" /></br> 密碼:<input
-											type="password" name="password" /></br> 姓名:<input type="text"
-											name="name" /></br> 電話:<input type="text" name="phone" /></br> 地址:<input
-											type="text" name="address" /></br> Email:<input type="text"
-											name="email" /></br>
-										<div class="form-group">
-											職位:<select class="form-control" name="position">
-												<option value="Warehouse staff">Warehouse staff</option>
-												<option value="Purchasing staff">Purchasing staff</option>
-												<option value="Accounting staff">Accounting staff</option>
-												<option value="Salesperson">Salesperson</option>
-												<option></option>
-											</select>
-										</div>
-										<button type="submit" class="btn btn-danger">註冊</button>
-
-									</form>
-
-
-								</div>
-		
-							</div>
-						</div>
-
-
-
-					</div>
+					
 				</div>
 
 			</div>

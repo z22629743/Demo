@@ -41,7 +41,6 @@ public class SalesOrderController {
 	@RequestMapping(value = "/addShoppingCart", method = RequestMethod.GET)
 	public ModelAndView addShoppingCart(@ModelAttribute Product product,long customerid){
 		CustomerDAO customerDAO = (CustomerDAO)context.getBean("customerDAO");
-		ModelAndView model = new ModelAndView("redirect:/availableProduct?id="+customerid+"&customer="+ customerDAO.get(customerid));
 		//only id is passed
 		long pid = product.getId();
 		System.out.println("pid="+pid +"pid2="+customerid + " "+product.getQuantity());
@@ -50,7 +49,15 @@ public class SalesOrderController {
 		product = productDAO.get(product);//retrieve all information with id
 		product.setCustomerID(customerid);
 		//ShoppingCart shoppingCart = (ShoppingCart)context.getBean("shoppingCart"); 
-		shoppingCart.add(product);
+		String message;
+		if(product.getInventory() >= product.getQuantity()){
+			shoppingCart.add(product);
+			message = "add successfully";
+		}else{
+			message = "out of stock";
+		}
+		
+		ModelAndView model = new ModelAndView("redirect:/availableProduct?id="+customerid+"&customer="+ customerDAO.get(customerid)+"&message="+message);
 		//System.out.println(shoppingCart.count());
 		return model;
 	}
@@ -137,7 +144,7 @@ public class SalesOrderController {
 
 	
 	@RequestMapping(value = "/availableProduct", method = RequestMethod.GET)
-	public ModelAndView listAvailableProduct(@ModelAttribute("id")long id,Customer customer){
+	public ModelAndView listAvailableProduct(@ModelAttribute("id")long id,Customer customer, String message){
 	
 		ModelAndView model = new ModelAndView("availableProduct");
 		//logger.info("controller");
@@ -147,9 +154,10 @@ public class SalesOrderController {
 		List<Product> productList = new ArrayList<Product>();
 		productList = productDAO.getAvailableList();
 		//logger.info(""+productList.size());
+		System.out.println("message = "+ message);
 		model.addObject("customer",customerDAO.get(id));
 		model.addObject("productList", productList);
-		
+		model.addObject("message",message);
 		return model;
 	}
 	@RequestMapping(value = "/see2", method = RequestMethod.GET)

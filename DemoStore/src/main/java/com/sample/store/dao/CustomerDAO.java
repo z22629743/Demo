@@ -13,7 +13,11 @@ public interface CustomerDAO {
 	
 	public Customer get(Customer aCustomer);
 	
+	public Customer get(String name);
+	
 	public void update(Customer customer);
+	
+	public void updateLevel(Customer customer);
 	
 	public void delete(long id);
 

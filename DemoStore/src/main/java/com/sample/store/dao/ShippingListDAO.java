@@ -11,4 +11,5 @@ public interface ShippingListDAO {
 	public List<ShippingList> getList(String sql);
 	public void delete(long soid);
 	public int arrive(ShippingList sh) throws SQLException;
+	public ShippingList get(long id);
 }

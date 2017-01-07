@@ -43,8 +43,8 @@ public class ShippingListDAOImpl implements ShippingListDAO{
 				aShippingList.setCustomerphone(rs.getString("customerphone"));
 				aShippingList.setOrderprice(rs.getInt("totalprice"));
 				aShippingList.setOrdertime(rs.getDate("ordertime"));
-				aShippingList.setShippingtime(rs.getDate("shippingtime"));
-				aShippingList.setAr_time(rs.getDate("ar_time"));
+				aShippingList.setShippingtime(rs.getTimestamp("shippingtime"));
+				aShippingList.setAr_time(rs.getTimestamp("ar_time"));
 				List.add(aShippingList);
 			}
 			rs.close();
@@ -139,6 +139,38 @@ public int arrive(ShippingList sh) throws SQLException{
 	return result;
 	}
 
+public ShippingList get(long id) {
+	ShippingList sh = new ShippingList();
+	String sql = "SELECT * FROM salesorder WHERE SOID = ?";
+	try {
+		conn = dataSource.getConnection();
+		smt = conn.prepareStatement(sql);
+		smt.setLong(1, id);
+		rs = smt.executeQuery();
+		while(rs.next()){
+			sh.setSoid(rs.getLong("soid"));
+			sh.setCustomername(rs.getString("customername"));
+			sh.setCustomeraddress(rs.getString("customeraddress"));
+			sh.setCustomerphone(rs.getString("customerphone"));
+			sh.setOrderprice(rs.getInt("totalprice"));
+			sh.setOrdertime(rs.getDate("ordertime"));
+			sh.setShippingtime(rs.getTimestamp("shippingtime"));
+			sh.setAr_time(rs.getTimestamp("ar_time"));
+		}
+		rs.close();
+		smt.close();
 
+	} catch (SQLException e) {
+		throw new RuntimeException(e);
+
+	} finally {
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {}
+		}
+	}
+	return sh;
+}
 
 }

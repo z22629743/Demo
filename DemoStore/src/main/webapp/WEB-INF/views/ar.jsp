@@ -20,7 +20,7 @@
         <h1>產品管理系統</h1>
         <p class="lead">本系統為輔仁大學資訊管理學系之範例程式</p>
       </div>
-	<div class="container"style="margin-left: 4cm;">
+	<div class="container"style="margin-left: 5cm;">
 		<div class="row">
 			<br>
 			<div class="col-md-12">

@@ -20,6 +20,7 @@
 	Email:<input type="text" name ="email"/></br>
 		<div class="form-group">
 						Â¾¦ì:<select class="form-control" name="position">
+						<option value="manager">manager</option>
   						<option value="Warehouse staff">Warehouse staff</option>
   						<option value="Purchasing staff">Purchasing staff</option>
   						<option value="Accounting staff">Accounting staff</option>

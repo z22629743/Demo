@@ -92,12 +92,12 @@ public class AccountController {
 	}
 	@RequestMapping(value = "/newuser", method = RequestMethod.GET)
 	public ModelAndView newuser(){
-		ModelAndView model = new ModelAndView("index");
+		ModelAndView model = new ModelAndView("manager");
 		return model;
 	}
 	 @RequestMapping(value = "/newuser", method = RequestMethod.POST)
 		public ModelAndView newuser(@ModelAttribute Manager manager){
-			ModelAndView model = new ModelAndView("index");	
+			ModelAndView model = new ModelAndView("redirect:/manager");	
 			ManagerDAO dao = (ManagerDAO) context.getBean("managerDAO");
 			manager.setId(dao.count());
 			dao.insert(manager);

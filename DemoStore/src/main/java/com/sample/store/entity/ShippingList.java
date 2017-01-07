@@ -1,6 +1,7 @@
 package com.sample.store.entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ShippingList {
 private long soid;
@@ -9,8 +10,8 @@ private String customeraddress;
 private String customerphone;
 private int orderprice;
 private Date ordertime;
-private Date shippingtime;
-private Date ar_time;
+private Timestamp shippingtime;
+private Timestamp ar_time;
 public long getSoid() {
 	return soid;
 }
@@ -41,16 +42,16 @@ public Date getOrdertime() {
 public void setOrdertime(Date ordertime) {
 	this.ordertime = ordertime;
 }
-public Date getShippingtime() {
+public Timestamp getShippingtime() {
 	return shippingtime;
 }
-public void setShippingtime(Date shippingtime) {
+public void setShippingtime(Timestamp shippingtime) {
 	this.shippingtime = shippingtime;
 }
-public Date getAr_time() {
+public Timestamp getAr_time() {
 	return ar_time;
 }
-public void setAr_time(Date ar_time) {
+public void setAr_time(Timestamp ar_time) {
 	this.ar_time = ar_time;
 }
 public int getOrderprice() {
